@@ -1,0 +1,35 @@
+﻿Document List:
+
+
+Reports
+        lab reports, peer review, and drafts 
+
+DNNlulc-FinalReport-share
+	the final draft of the final project report sharable version
+
+Tutorial
+        tutorial notebooks
+
+
+CBClulcArcGis.ipynb
+        attempt at land cover classification using built in ArcGIS modules
+
+
+ClassifierTestRun.ipynb/.py
+        test script for the classifier on MSI server
+
+
+DenverLULCdataFetch.ipynb
+        notebook to get denver county data into the arc project
+
+
+kerassequentialadjustedmodel.py
+        the DNN classifier model
+
+
+submit_ClassifierKerasSeq_01.sh
+        bash script for MSI job submission and environment set up
+
+
+TorchEnviInstall01.ipynb
+        troubleshooting module install workbook
