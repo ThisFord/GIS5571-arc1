@@ -25,4 +25,4 @@ module load tensorflow #this is the recommended way to install keras on MSI per 
 pip install --user matplotlib keras numpy # must include --user or admin privaleges will error out
 
 # Run the test python script 
-python3 kerassequentialadjustedmodel.py
+python3 ClassifierKerasSeq_01.py

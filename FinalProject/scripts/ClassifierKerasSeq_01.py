@@ -16,7 +16,7 @@ import tensorflow_datasets as tfds
 import tensorflow as tf
 
 # Split guide: https://www.tensorflow.org/datasets/splits
-# If you want to split the dataset
+
 
 # Download dataset.
 ds_train, ds_info = tfds.load('eurosat/rgb', split='train', shuffle_files=True, with_info=True)
@@ -148,67 +148,3 @@ history_frame.loc[:, ['sparse_categorical_accuracy', 'val_sparse_categorical_acc
 
 # Same goes for accuracy (acc)
 # Focus on val_sparse_categorical_accuracy
-
-"""### Optional
-
-Below is additional code that shows how to pull the equivalent satellite imagery data from source. It does not have the 'mechanics' code to get it to run in the model, but is available for those who want to start deviating from the provided examples and datasets. 
-"""
-
-# Another example for inspiration
-
-# Credit: https://medium.datadriveninvestor.com/patch-based-cover-type-classification-using-satellite-imagery-a67edeae7e24
-
-import tensorflow as tf
-
-from tensorflow.keras.models import Sequential 
-from tensorflow.keras.backend import set_image_data_format 
-from tensorflow.keras.layers import Conv2D, MaxPool2D, BatchNormalization 
-from tensorflow.keras.layers import Activation, Dropout, Flatten, Dense 
-from tensorflow.keras import optimizers, losses, utils 
-#from livelossplot import keras_plot
-
-!pip install wget
-!pip install livelossplot
-
-'''
-# http://madm.dfki.de/files/sentinel/EuroSATallBands.zip
-
-import wget
-url = 'http://madm.dfki.de/files/sentinel/EuroSATallBands.zip'
-filename = wget.download(url)
-
-print(filename)
-'''
-
-# !ls eurodata/ds/images/remote_sensing/otherDatasets/sentinel_2/tif/AnnualCrop
-
-#import shutil
-#shutil.unpack_archive(filename,'eurodata')
-
-set_image_data_format('channels_first') 
-model = Sequential() 
-model.add(Conv2D(28, (3, 3), padding='same',input_shape=(13, 64, 64))) 
-model.add(Activation('relu')) 
-model.add(Conv2D(28, (3, 3), padding='same')) 
-model.add(Activation('relu')) 
-model.add(MaxPool2D(2,2)) 
-model.add(Conv2D(56, (3, 3),padding='same')) 
-model.add(Activation('relu')) 
-model.add(Conv2D(56, (3, 3), padding='same')) 
-model.add(Activation('relu')) 
-model.add(MaxPool2D(2,2)) 
-model.add(Conv2D(112, (3, 3), padding='same')) 
-model.add(Activation('relu')) 
-model.add(Conv2D(112, (3, 3), padding='same')) 
-model.add(Activation('relu')) 
-model.add(MaxPool2D(2,2)) 
-model.add(Flatten()) 
-model.add(Dense(784)) 
-model.add(Activation('relu')) 
-model.add(Dropout(0.6)) 
-model.add(Dense(10)) 
-model.add(Activation('sigmoid')) 
-adam = optimizers.Adam(learning_rate=0.001) 
-model.compile(optimizer=adam, loss=losses.binary_crossentropy, metrics=['accuracy'])
-
-model.summary()
